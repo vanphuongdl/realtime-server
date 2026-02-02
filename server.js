@@ -3,6 +3,16 @@ const http = require("http");
 const { Server } = require("socket.io");
 
 const app = express();
+app.get("/", (req, res) => {
+  const now = new Date();
+
+  const time = now.toLocaleString("vi-VN", {
+    timeZone: "Asia/Ho_Chi_Minh"
+  });
+
+  res.send(`Realtime server is running, bây giờ là: ${time}`);
+});
+
 const server = http.createServer(app);
 
 const io = new Server(server, {
